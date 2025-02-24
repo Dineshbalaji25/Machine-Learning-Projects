@@ -2,13 +2,9 @@ import os
 import re
 import subprocess
 import streamlit as st
-from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-
-# Load environment variables
-load_dotenv()
 
 # Initialize session state for chat history
 if "messages" not in st.session_state:
@@ -16,7 +12,8 @@ if "messages" not in st.session_state:
 
 # Initialize Gemini model and LangChain components
 if "model" not in st.session_state:
-    st.session_state.model = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.2)
+    API_KEY = "AIzaSyD1CGspzhd-Cs_Ewjyo3jyPq9shSnb6j3g"  # Replace with your actual API key
+    st.session_state.model = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.2, google_api_key=API_KEY)
 
     template = """You are a Python coding assistant. 
     Generate Python code based on the user request.
